@@ -1,0 +1,79 @@
+require 'colorize'
+require_relative 'board'
+require_relative 'cursorable'
+
+class Display
+  include Cursorable
+
+  def initialize(board = Board.new)
+    @board = board
+    @cursor_pos = [0, 0]
+    @selected = false
+    @selected_pos = nil
+  end
+
+  def build_grid
+    @board.rows.map.with_index do |row, i|
+      build_row(row, i)
+    end
+  end
+
+  def build_row(row, i)
+    row.map.with_index do |piece, j|
+      color_options = colors_for(i, j)
+      piece.to_s.colorize(color_options)
+    end
+  end
+
+  def colors_for(i, j)
+    bg = nil
+    if [i, j] == @cursor_pos
+      if @selected_pos.nil?
+        bg = :light_red
+      else
+        bg = :green
+      end
+      # end
+    # elsif @selected
+    #   bg = :green
+    elsif (i + j).odd?
+      bg = :light_blue
+    else
+      bg = :brown
+    end
+    { background: bg, color: :white }
+  end
+
+  def render
+    system("clear")
+    puts "Fill the grid!"
+    puts "Arrow keys, WASD, or vim to move, space or enter to confirm."
+    build_grid.each { |row| puts row.join }
+  end
+
+  def play
+
+    10.times do
+      @cursor_pos = pick_square
+        if @selected_pos.nil?
+          @selected_pos = @cursor_pos
+        else
+          #call the Piece update_pos with positions
+          update_pos(@selected_pos, @cursor_pos)
+          @selected_pos = nil
+        end
+      # @selected = true
+      render
+    end
+  end
+#select functionality is not working (when we press space the 2nd time, the piece hasn't moved)
+  def pick_square
+    result = nil
+    until result
+      self.render
+      result = self.get_input
+    end
+    result
+  end
+
+end

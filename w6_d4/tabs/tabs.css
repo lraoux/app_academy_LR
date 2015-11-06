@@ -1,0 +1,34 @@
+html, body, section, article,
+h1, h2, p, strong, em, a {
+  margin: 0;
+  border: 0;
+  padding: 0;
+  outline: 0;
+  box-sizing: inherit;
+  font: inherit;
+  text-decoration: inherit;
+  text-align: inherit;
+  color: inherit;
+  background: transparent;
+}
+.tabs a {
+  font-weight: normal;
+}
+.tabs a.active {
+  font-weight: bold;
+}
+
+article {
+  display: none;
+  transition: opacity .5s;
+}
+
+article.active {
+  display: block;
+
+}
+
+.transitioning {
+  display: block;
+  opacity: 0;
+}

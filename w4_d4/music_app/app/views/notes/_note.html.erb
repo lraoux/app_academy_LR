@@ -1,0 +1,3 @@
+<%Note.all.each do |note|%>
+  NOTESTART<%=note.body%> by <%=note.user.email%>NOTEEND
+<%end%>

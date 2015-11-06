@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Dog tabs!</title>
+    <script src="./jquery-1.11.3.js"></script>
+    <script src="./tabs.js"></script>
+    <link href="./tabs.css" rel="stylesheet" type="text/css">
+  </head>
+
+  <body>
+    <ul class='tabs' data-content-tabs='.content-tabs'>
+      <li><a href="#labrador" class="active">Labrador</a></li>
+      <li><a href="#mutt">Mutt</a></li>
+      <li><a href="#husky">Husky</a></li>
+
+    </ul>
+    <section class='content-tabs'>
+      <article id="labrador" class="active"><p>Labradors are playful, energetic, and slobbery.</p></article>
+      <article id="mutt"><p>Mutts will bite you in the face!</p></article>
+      <article id="husky"><p>Huskies are not good city dogs because they become neurotic.</p></article>
+    </section>
+    
+    <script>
+      $(function() {
+        $('.tabs').tabs();
+      });
+    </script>
+  </body>
+</html>

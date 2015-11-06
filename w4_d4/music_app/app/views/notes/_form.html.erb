@@ -1,0 +1,10 @@
+<h1> Create a note! </h1>
+
+<form action="<%=track_notes_url(params[:track_id])%>" method="POST">
+  <input type="hidden" name="authenticity_token" value="<%= form_authenticity_token %>"
+
+  <label_for="name"> Body of note </label>
+  <textarea name="note[body]" id="name"></textarea>
+
+  <input type="submit" value="Create!">
+</form>

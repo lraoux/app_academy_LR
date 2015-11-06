@@ -1,0 +1,7 @@
+.row{
+  display:block;
+}
+
+div.cell{
+  display:inline;
+}
